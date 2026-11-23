@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.o
+*.ko
+*.out
+test_omega_interlock
+test_omega_spi_frame
+.DS_Store
