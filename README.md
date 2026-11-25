@@ -4,7 +4,7 @@
 > Klinket i bordplata: bruddprøve (`VS`).  
 > Låst i regnskapet: realisert tilstand (`P`).
 
-Dette er ikke et bibliotek og ikke et rammeverk. Det er **8 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
+Dette er ikke et bibliotek og ikke et rammeverk. Det er **9 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
 
 - **Forfatter:** Marius Egerhei Torjusen (`ORCID: 0009-0006-0431-6637`)
 - **Lisens:** Apache-2.0
@@ -21,7 +21,7 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **8 lukkede bruddprøver
 
 ---
 
-## De 8 bruddprøvene
+## De 9 bruddprøvene
 
 | Celle | Språk | Kjernebrudd (bløffen som drepes) | Søsterrom (`@sololys`) |
 | :--- | :--- | :--- | :--- |
@@ -33,13 +33,14 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **8 lukkede bruddprøver
 | **`06_cayley_rotor_py`** | Python | Involusjonsbrudd på konveks mengde ($R_{N_K}(x)=\|x\|$) og uforkortede brøker i SHA-256 | *(selvforsynt)* |
 | **`07_si_dimension_lock_py`** | Python | Enhetsbløff, lukkede intervallfeller og 7-tuppel SI-dimensjonslås (`X.01–X.09`) | [femos-biomimetic-nitrogenase](https://github.com/sololys/femos-biomimetic-nitrogenase) · [epistemic-architectures](https://github.com/sololys/epistemic-architectures) |
 | **`08_nlk_enigma_split_py`** | Python | Sammensmelting av tilstandsløs transformasjon (Lag 1) og forrigling (Lag 2) skjuler krasj (`OUTCOME_UNKNOWN`) | *(selvforsynt)* |
+| **`09_unfolding_dimension_lock_py`** | Python | Sirkulær $T^*_q M$-forutsetning av 3D-rommet og 7D-oktonionbløff ($\dim\ker = 14$ spøkelsesplan, $SO(7) \to G_2$-brudd og brutt Jacobi-lås); utleder $V \cong \Lambda^2 V \otimes \Lambda^3 V \implies n = 3$ via Schurs lemma | [epistemic-architectures](https://github.com/sololys/epistemic-architectures) |
 
 ---
 
-## Kjør alle 8 bruddprøver
+## Kjør alle 9 bruddprøver
 
 ```bash
 make verify-all
 ```
 
-Kommandoen kjører `leak-check` etterfulgt av samtlige 8 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`) og Python (`python3`).
+Kommandoen kjører `leak-check` etterfulgt av samtlige 9 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`) og Python (`python3`).
