@@ -4,7 +4,7 @@
 > Klinket i bordplata: bruddprøve (`VS`).  
 > Låst i regnskapet: realisert tilstand (`P`).
 
-Dette er ikke et bibliotek og ikke et rammeverk. Det er **10 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
+Dette er ikke et bibliotek og ikke et rammeverk. Det er **12 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
 
 - **Forfatter:** Marius Egerhei Torjusen (`ORCID: 0009-0006-0431-6637`)
 - **Lisens:** Apache-2.0
@@ -21,7 +21,7 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **10 lukkede bruddprøve
 
 ---
 
-## De 10 bruddprøvene
+## De 12 bruddprøvene
 
 | Celle | Språk | Kjernebrudd (bløffen som drepes) | Søsterrom (`@sololys`) |
 | :--- | :--- | :--- | :--- |
@@ -35,13 +35,15 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **10 lukkede bruddprøve
 | **`08_nlk_enigma_split_py`** | Python | Sammensmelting av tilstandsløs transformasjon (Lag 1) og forrigling (Lag 2) skjuler krasj (`OUTCOME_UNKNOWN`) | *(selvforsynt)* |
 | **`09_unfolding_dimension_lock_py`** | Python | Sirkulær $T^*_q M\text{-forutsetning}$ av 3D-rommet og 7D-oktonionbløff ($\dim\ker = 14$ spøkelsesplan, $\mathrm{SO}(7) \to G_2\text{-brudd}$ og brutt Jacobi-lås); utleder $V \cong \Lambda^2 V \otimes \Lambda^3 V \implies n = 3$ via Schurs lemma | [epistemic-architectures](https://github.com/sololys/epistemic-architectures) |
 | **`10_k_filter_sluice_c11_rtl`** | C11 / RTL / Python | Skrivefri `kill_latched`, kausal overtelling (`valid_steps > total_steps`), `-2^63` speilbrudd og spornorm-rot i $d \ge 3$; sveiser $(3,4,5)\to(7,24,25)$ $\mathbb{Q}$-rekobling ($\Delta p = 576/625$) og `12/12 XOR == 0` mot `iCE40UP5K` (`14,87 MHz` post-PnR) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
+| **`11_bell_ky_7qubit_cptp_c11_rtl`** | C11 / RTL / Python | Spor-divisjonsfelle ($M\rho M^\dagger / \operatorname{Tr}$), fortegnsblind $\lvert\Sigma_1^2 - \Sigma_2^2\rvert$ og `L1`-dekoherens i CHSH; sveiser sporlåst 128D 7-qubit $\mathbb{Q}\text{-CPTP}$, Frobenius-skraper og `12/12 XOR == 0` mot `iCE40UP5K` (`12,81 MHz` post-PnR) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
+| **`12_omni_crash3_linf_c11_rtl`** | C11 / RTL / Python | IEEE-754 `NaN -> OPEN`-gjennomslipp, frakoblet $\dot{R} > \delta_R$ i vektet $L_1$-sum og tautologisk `(s^r)^r == s`; sveiser eksakt gullsnittring $\mathbb{Z}[\varphi]$, konjunktiv $L_\infty$-sluse og `12/12 XOR == 0` mot `iCE40UP5K` (`12,68 MHz` post-PnR) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
 
 ---
 
-## Kjør alle 10 bruddprøver
+## Kjør alle 12 bruddprøver
 
 ```bash
 make verify-all
 ```
 
-Kommandoen kjører `leak-check` etterfulgt av samtlige 10 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`), SystemVerilog RTL (`iverilog`/`yosys`) og Python (`python3`).
+Kommandoen kjører `leak-check` etterfulgt av samtlige 12 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`), SystemVerilog RTL (`iverilog`/`yosys`) og Python (`python3`).
