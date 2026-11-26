@@ -14,7 +14,7 @@ Tre byggesteiner i det innsendte C++17-utkastet er håndverksmessig sterke og er
 
 ---
 
-## 2. Seks feil og sikkerhetsbrudd som knakk under benkprøving (`RETTET I CARBON/16`)
+## 2. Seks feil og sikkerhetsbrudd som knakk under benkprøving (`RETTET I CELLE 02`)
 
 Da vi la råutkastet direkte på `g++ 12.2.0` på Debian Linux med `-std=c++17 -O2 -Wall -Wextra -Werror -pedantic` og deretter under `-fsanitize=undefined,address`, brast seks punkter som er herdet i `16_doc78_reversiblus_herdet_kjerne.cpp`:
 

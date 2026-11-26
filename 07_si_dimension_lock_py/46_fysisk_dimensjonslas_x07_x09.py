@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CARBON/46_fysisk_dimensjonslas_x07_x09.py — Herdet Fysisk Dimensjons-, Intervall- og Stammelås (X.07–X.09)
+07_si_dimension_lock_py/46_fysisk_dimensjonslas_x07_x09.py — Herdet Fysisk Dimensjons-, Intervall- og Stammelås (X.07–X.09)
 ===========================================================================================================
 Epistemisk status : L1 (lokalt demonstrert programvare; append-only SHA-256 != fysisk WORM)
 Kontraktregel     : INSPIRED_BY != IMPLEMENTS != PROVES

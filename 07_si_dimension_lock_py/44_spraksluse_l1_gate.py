@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CARBON/44_spraksluse_l1_gate.py — Herdet Fail-Closed To-Spors Språksluse (X.01–X.06)
+07_si_dimension_lock_py/44_spraksluse_l1_gate.py — Herdet Fail-Closed To-Spors Språksluse (X.01–X.06)
 ====================================================================================
 Epistemisk status : L1 (lokalt demonstrert programvare; append-only SHA-256 != fysisk WORM)
 Kontraktregel     : INSPIRED_BY != IMPLEMENTS != PROVES

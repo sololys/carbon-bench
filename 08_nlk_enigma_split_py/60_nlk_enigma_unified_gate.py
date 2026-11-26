@@ -4,7 +4,7 @@
 ===============================================================================
 CARBON-60: KY-ENIGMA v1.1 -> NLK kanonisk spesifikasjon UNIFIED L1 GATE ENGINE (0 FLOAT)
 ===============================================================================
-Spesifikasjon : CARBON/59_NLK_ENIGMA_UNIFIED_BLUEPRINT_v1_0.md
+Spesifikasjon : NLK_ENIGMA_UNIFIED_BLUEPRINT_v1_0
 Grunnlag      : kanonisk spesifikasjon (NLK) + KY-ENIGMA v1.1 + Fase-speil x Enigma v1.0
 Klassifikasjon: L1 Demonstrator (lokal programvare, 0 float, fail-closed)
 Kardinalaksiom: GENERERER != AUTORISERER != REALISERER != BEVISER

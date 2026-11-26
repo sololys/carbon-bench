@@ -1,5 +1,5 @@
 // 16_doc78_reversiblus_herdet_kjerne.cpp
-// Herdet, UB-fri L1 C++17-referansekjerne for Dokument 78 (CARBON / 16).
+// Herdet, UB-fri L1 C++17-referansekjerne for Dokument 78 (Celle 02).
 //
 // Grenseoppgang:
 //   - Nivå: L1 (lokalt demonstrert programvare; INSPIRED_BY != IMPLEMENTS != PROVES).
@@ -624,7 +624,7 @@ inline std::array<int64_t, 3> cross3(
     };
 }
 
-// Verifiserer §4.3 (CARBON/13-14): Kontraroterende 4-legemerotor har eksakt
+// Verifiserer §4.3 (Celle 06): Kontraroterende 4-legemerotor har eksakt
 // P_tot == 0 og L_tot(t) == 0 for ALLE rotasjoner hvis og bare hvis n_hat != 0 og r_0 . n_hat == 0.
 inline bool verify_counter_rotor_zero_momenta(const CandidateDriveX& x) noexcept {
     for (int64_t r_c : x.rotor_arm_r0) {
@@ -804,7 +804,7 @@ inline bool defragment_with_lifo(ReversibleCore& s, LifoPhaseMemory& mem) noexce
 }
 
 // Moreau-/boksprojeksjon Pi_K på det lukkede konvekse admissible settet K (Pi_K^2 = Pi_K).
-// NB (CARBON/13): Pi_K er ikke-lineær metrisk projeksjon på boks; 2*Pi_K - I brukes IKKE som involusjon!
+// NB (Celle 06): Pi_K er ikke-lineær metrisk projeksjon på boks; 2*Pi_K - I brukes IKKE som involusjon!
 inline ReversibleCore project_admissible_pi_k(ReversibleCore s) noexcept {
     int64_t lim = s.K.admissible_eta_max_uv;
     if (lim < 0LL) {

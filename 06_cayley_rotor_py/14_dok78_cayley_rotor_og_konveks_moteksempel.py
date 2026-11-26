@@ -336,7 +336,7 @@ def test_3_counter_rotor_tilt_vs_principal_axis(ledger: AppendOnlyWitnessLedger)
     l_4body_tilted = vec_add(l_plus, l_minus)
     assert p_4body_tilted == [q(0), q(0), q(0)]
 
-    # Analytisk formel fra CARBON/13: L_y = -4 * m_p * omega * r_perp * r_par * sin(theta)
+    # Analytisk formel fra Dok. 78 §4.3: L_y = -4 * m_p * omega * r_perp * r_par * sin(theta)
     sin_theta = (q(2) * tau) / (q(1) + tau * tau)  # 4/5
     expected_ly = q(-4) * m_p * omega * q(3) * q(2) * sin_theta  # -4*2*5*3*2*(4/5) = -192
     assert expected_ly == q(-192)

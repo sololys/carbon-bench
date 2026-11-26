@@ -1,11 +1,13 @@
 # carbon-bench — Deterministisk bruddprøve-benk (0 float, 0 eksterne pakker)
-.PHONY: verify-all c11 cpp17 rust py leak-check clean
+.PHONY: verify verify-all c11 cpp17 rust py leak-check clean
+
+verify: verify-all
 
 verify-all: leak-check c11 cpp17 rust py
 	@echo "[PASS] Alle 9 celler verifisert (C11 + C++17 + Rust + Python)."
 
 leak-check:
-	@! grep -rnE "(/home/sololyset|AGENTS\.md|05_PATENTS|06_RESEARCH|09_SYSTEM|SPEC-[0-9]{3})" \
+	@! grep -rnE "(/home/sololyset|AGENTS\.md|00_KANONISK_KJERNE|03_ENGINES|04_REALITY_FORGE|05_PATENTS|06_RESEARCH|07_BOKHYLLA|09_SYSTEM|CARBON/|Gemini-Core|SPEC-[0-9]{3})" \
 		--exclude="Makefile" --exclude-dir=".git" --exclude-dir="__pycache__" . \
 		|| (echo "[FAIL] Privat sti eller intern referanse funnet." && exit 1)
 	@echo "[PASS] 0 LEAKS bekreftet."

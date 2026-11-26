@@ -4,7 +4,7 @@
 ========================================================================================
 DOKUMENT-ID             : CARBON-25 (REVISJON AV KY ENGINE KAPPA_27 OG NOTEBOOKLM-UTKAST)
 KILDEFIL (OPPGRADERT)   : ky_engine_v1_kappa27.rs (Løftet v1.1, 15/15 PASS)
-BENKEKOPI               : CARBON/26_ky_engine_v1_1_kappa27_herdet.rs (15/15 PASS, 0 float)
+BENKEKOPI               : 03_ky_typestate_rust/26_ky_engine_v1_1_kappa27_herdet.rs (15/15 PASS, 0 float)
 VERKTØYKJEDE            : rustc 1.63.0 (-D warnings, Edition 2015 & 2021, 0 crates)
 EPISTEMISK STATUS       : L1 (lokalt demonstrert programvare; append-only SHA-256 != WORM)
 KONTRAKTREGEL           : INSPIRED_BY != IMPLEMENTS != PROVES
@@ -44,9 +44,9 @@ Når vi prøver det foreslåtte Rust-utsnittet fra gjennomgangen direkte mot `ru
 Kjørt lokalt på `rustc 1.63.0` med `-D warnings` og `#![forbid(unsafe_code)]`:
 
 ```bash
-rustc -D warnings CARBON/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1 && /tmp/ky_v1_1
-rustc --test -D warnings CARBON/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1_t && /tmp/ky_v1_1_t
-rustc --edition 2021 --test -D warnings CARBON/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1_t21 && /tmp/ky_v1_1_t21
+rustc -D warnings 03_ky_typestate_rust/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1 && /tmp/ky_v1_1
+rustc --test -D warnings 03_ky_typestate_rust/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1_t && /tmp/ky_v1_1_t
+rustc --edition 2021 --test -D warnings 03_ky_typestate_rust/26_ky_engine_v1_1_kappa27_herdet.rs -o /tmp/ky_v1_1_t21 && /tmp/ky_v1_1_t21
 ```
 
 Resultat: **`15/15 PASS`** i både Edition 2015 og Edition 2021, `0` kompilatoradvarsler, `0` eksterne crates og `0` flyttall.

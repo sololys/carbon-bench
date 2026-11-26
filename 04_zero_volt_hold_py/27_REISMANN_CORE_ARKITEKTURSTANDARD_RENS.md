@@ -3,7 +3,7 @@
 ```text
 ========================================================================================
 DOKUMENT-ID             : CARBON-27 (REVIDERT REISMANN-CORE ARKITEKTURSTANDARD)
-VERIFIKASJONSMOTOR      : CARBON/28_reismann_core_c0_c6_verifikasjon.py (8/8 PASS, 0 float)
+VERIFIKASJONSMOTOR      : 04_zero_volt_hold_py/28_reismann_core_c0_c6_verifikasjon.py (8/8 PASS, 0 float)
 EPISTEMISK DEMARKASJON  : Bevisnivå L0 (fysikk/matematikk) · L1 (lokal programvare)
                           L2/L3 (fysisk maskinvare i HOLD inntil benk-/feltvitne foreligger)
 KONTROLLSTAKK           : Kontrollag C0–C6 (skilt fra bevisnivåene L0–L3!)
@@ -11,7 +11,7 @@ KONTRAKTREGEL           : INSPIRED_BY != IMPLEMENTS != PROVES
 ========================================================================================
 ```
 
-> **Verkstedmerknad (`CARBON / 27`):** Dette er den gjennomgåtte og ferdighøvlede utgaven av arkitekturstandarden for `Reismann-Core`. Åtte feil og selvmotsigelser fra råutkastet er rettet mot kildene i korpuset:
+> **Verkstedmerknad (`Celle 04`):** Dette er den gjennomgåtte og ferdighøvlede utgaven av arkitekturstandarden for `Reismann-Core`. Åtte feil og selvmotsigelser fra råutkastet er rettet mot kildene i korpuset:
 > 1. **Selvmotsigelsen mellom `2,50 V DC` i `HOLD` (§2) og Teorem 2 (`SABOTAGE_INTERLOCK_BYPASS` i §5):** En fysisk spolespenning på `2,50 V DC` driver strøm $I_{\mathrm{act}} > I_{\mathrm{leak}}$ og utløser dermed sabotasje-nødkutt etter dokumentets eget Teorem 2. Fysisk aktuatorskinne er nå entydig **`0,00 V DC`** i både `KILL`, `TRAP` og `HOLD` (`5,00 V DC` kun ved `OPEN`), mens `2,50` kun omtales som en rent logisk/symbolsk telemetritilstand i eldre `L1`-modeller.
 > 2. **Regnefeil i krumningen på $A_5$-potensialbarrieren (§2):** For $V_{A5}(x) = \frac{1}{6}x^6 - \frac{1}{2}x^4 + 0{,}32x^2$ er $V''_{A5}(x) = 5x^4 - 6x^2 + 0{,}64$. Ved barriererøttene $x_{\pm 1} = \pm\sqrt{2/5} \approx \pm 0{,}6325$ er eksakt krumning $V''_{A5}(\pm\sqrt{2/5}) = 0{,}80 - 2{,}40 + 0{,}64 = \mathbf{-0{,}96}$ ($-\frac{24}{25}$), *ikke* $-1{,}28$.
 > 3. **Tautologisk formel for $\mathrm{Viab}(\mathcal{K})$ (§1):** Siden $\operatorname{Im}(\Pi_{\mathcal{K}}) = \mathcal{K}$, er $(\Pi_{\mathcal{K}} \circ \Phi)^t(x_0) \in \mathcal{K}$ trivielt oppfylt for alle $x_0$. Rettet til reell levedyktighet uten projeksjonsdefekt ($\Delta_{\mathcal{K}}(\Phi(x_t, u_t)) = 0$).
