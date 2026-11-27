@@ -1,0 +1,26 @@
+# =============================================================================
+# UPduino v3.1 (Lattice iCE40UP5K-SG48) Physical Pin Constraints (bell_ky_sluice)
+# =============================================================================
+
+set_io             clk_12m             20
+set_io -pullup yes rst_l01_btn_n       23
+
+set_io -pullup yes spi_cs_n            25
+set_io             spi_sck             26
+set_io             spi_mosi            27
+set_io             spi_miso            32
+
+set_io             w_ext_hw_pin        28
+
+set_io             actuator_rail_en    31
+set_io             killed_latch_pin    34
+set_io             port_pins[0]        35
+set_io             port_pins[1]        37
+set_io             reason_low_pins[0]  2
+set_io             reason_low_pins[1]  3
+set_io             reason_low_pins[2]  4
+set_io             monitor_coupled_pin 46
+
+set_io             led_g_n             39
+set_io             led_b_n             40
+set_io             led_r_n             41
