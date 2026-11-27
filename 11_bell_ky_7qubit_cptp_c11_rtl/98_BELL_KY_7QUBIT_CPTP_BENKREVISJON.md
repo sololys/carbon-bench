@@ -15,11 +15,11 @@
 
 ---
 
-6. **Sekvensiell slot-rekkefølgelås og knivseggsvektorer (`V13`–`V20`):** Låser `loaded_mask == (1 << slot) - 1` mot krysset arm-innlasting (`V19`), tester eksakt klassisk Bell-grense $\Sigma_1^2 = 4N^2$ mot $+1$ fysisk skudd (`V13`–`V14`), 64/128-bits låneovergang $2^{68}$ mot $2^{68}-1$ (`V15`–`V16`), $N = 2^{38}$ takmetning mot $2^{38}+1$ (`V17`–`V18`) og eksakt lyslik SI-grense `lc_lhs == lc_rhs` (`V20`).
+6. **Sekvensiell slot-rekkefølgelås, 48/47-bits bæreoppdeling og knivseggsvektorer (`V13`–`V22`):** Låser `loaded_mask == (1 << slot) - 1` mot krysset arm-innlasting (`V19`), deler 96-bits MAC og 94-bits komparator i to 48/47-bits delsteg med éntrinns LSB-`carry_in` og 3-trinns `II=1` No-Signalling-pipeline (uendret `338`-syklus latens), og tester klassisk Bell-grense $\Sigma_1^2 = 4N^2$ mot $+1$ fysisk skudd (`V13`–`V14`), lånesøm $2^{68}$ mot $2^{68}-1$ (`V15`–`V16`), to-veis kryss-ord lån over bit 47 og bit 64 (`V21`–`V22`), $N = 2^{38}$ takmetning (`V17`–`V18`) og lyslik SI-grense `lc_lhs == lc_rhs` (`V20`).
 
 ---
 
 ## 2. Silisiumutlegg (`UPduino v3.1` / `iCE40UP5K-SG48`)
 
-- **Yosys `0.23` (`bell_ky_sluice`):** `3 755 SB_LUT4` (`71,1 %`), **`0 / 8 SB_MAC16`**, **`20/20 XOR == 0`** mot `cells_sim.v`.
-- **Post-PnR `nextpnr-ice40` + `icetime`:** **`4 883 / 5 280 ICESTORM_LC` (`92 %`)**, `0 DSP`, kritisk sti **`72,69 ns` (`13,76 MHz > 12,00 MHz` krystall, `89` logikknivåer)**.
+- **Yosys `0.23` (`bell_ky_sluice`):** `3 532 SB_LUT4` (`66,9 %`), **`0 / 8 SB_MAC16`**, **`22/22 XOR == 0`** mot `cells_sim.v`.
+- **Post-PnR `nextpnr-ice40` + `icetime`:** **`4 894 / 5 280 ICESTORM_LC` (`92 %`)**, `0 DSP`, kritisk sti **`46,87 ns` (`21,34 MHz > 12,00 MHz` krystall, `46` logikknivåer, `+36,46 ns` klaring)**.

@@ -16,11 +16,11 @@
 
 ---
 
-7. **63-bits $\mathbb{Z}[\varphi]$-hjørnelås, stasjonær MSB=0 MAC og kantvektorer (`V13`–`V20`):** Gjerder ut MSB-overløp (`k_defect[31] | b_barrier[31] | c_care[31]`, `V20`) og `UINT32_MAX`-epoke, verifiserer motsatt fortegn $2H_\varphi = -800 + 1000\varphi > 0$ (`V15`), negativ $L_\infty$-kant `250` mot `251` (`V14`, `V17`), $+1\text{ LSB}$ `pi == tau` (`V16`), sub-millimeter SI-lyskjegle `19 999` mot `20 000 mm` ved `133 425 ps` (`V13`, `V18`) og det eksakte 63-bits maks-hjørnet `0x7FFFFFFF` (`V19`).
+7. **63-bits $\mathbb{Z}[\varphi]$-hjørnelås, stasjonær MSB=0 MAC og kantvektorer (`V13`–`V22`):** Gjerder ut MSB-overløp (`k_defect[31] | b_barrier[31] | c_care[31]`, `V20`) og `UINT32_MAX`-epoke, verifiserer motsatt fortegn $2H_\varphi = -800 + 1000\varphi > 0$ (`V15`), negativ $L_\infty$-kant `250` mot `251` (`V14`, `V17`), $+1\text{ LSB}$ `pi == tau` (`V16`), sub-millimeter SI-lyskjegle `19 999` mot `20 000 mm` ved `133 425 ps` (`V13`, `V18`) det eksakte 63-bits maks-hjørnet `0x7FFFFFFF` (`V19`), $2^{63} = \mathrm{INT64\_MAX}+1$-hjørnet (`V21 -> KILL`) og `UINT32_MAX`-epokesperren (`V22 -> HOLD`).
 
 ---
 
 ## 2. Silisiumutlegg (`UPduino v3.1` / `iCE40UP5K-SG48`)
 
-- **Yosys `0.23` (`omni_crash3_sluice`):** `2 582 SB_LUT4` (`48,9 %`), **`0 / 8 SB_MAC16`**, **`20/20 XOR == 0`** mot `cells_sim.v`.
+- **Yosys `0.23` (`omni_crash3_sluice`):** `2 582 SB_LUT4` (`48,9 %`), **`0 / 8 SB_MAC16`**, **`22/22 XOR == 0`** mot `cells_sim.v`.
 - **Post-PnR `nextpnr-ice40` + `icetime`:** **`3 649 / 5 280 ICESTORM_LC` (`69 %`)**, `0 DSP`, kritisk sti **`37,22 ns` (`26,86 MHz > 12,00 MHz` krystall, `38` logikknivåer)**.
