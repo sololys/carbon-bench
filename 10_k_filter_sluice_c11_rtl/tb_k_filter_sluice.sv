@@ -190,12 +190,11 @@ module tb_k_filter_sluice;
         @(posedge clk); #1; check_vec(12, 8'h12, 2'd2, 4'd6);
 
         if (err_count != 0) begin
-            $display("tb_k_filter_sluice: FAIL (%0d errors)", err_count);
-            $finish(1);
+            $fatal(1, "tb_k_filter_sluice: FAIL (%0d errors)", err_count);
         end
 
         $display("K_FILTER_SLUICE_RTL=PASS (12/12 VECTORS, 128-BIT EXACT, XOR == 0)");
-        $finish(0);
+        $finish;
     end
 
 endmodule

@@ -1,0 +1,33 @@
+name: Carbon-Bench 13-Core Silicon & Formal Gate
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Icarus Verilog, Yosys (iCE40 library), C/C++, and Rust toolchains
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gcc g++ binutils rustc iverilog yosys
+          test -f /usr/share/yosys/ice40/cells_sim.v
+
+      - name: Execute all 13 deterministic cores (C11 + C++17 ASan/UBSan + Rust + RTL + iCE40 Gate Netlist)
+        run: make verify

@@ -225,7 +225,7 @@ class TestDualTrackKFilterSluice(unittest.TestCase):
                     ],
                     check=True,
                 )
-                rtl_out = subprocess.check_output(["vvp", str(vvp_rtl)], text=True)
+                rtl_out = subprocess.check_output(["vvp", "-N", str(vvp_rtl)], text=True)
                 rtl_vecs = [ln for ln in rtl_out.splitlines() if ln.startswith("VEC ")]
                 self.assertEqual(c_vecs, rtl_vecs)
 
@@ -255,7 +255,7 @@ class TestDualTrackKFilterSluice(unittest.TestCase):
                         ],
                         check=True,
                     )
-                    ps_out = subprocess.check_output(["vvp", str(vvp_ps)], text=True)
+                    ps_out = subprocess.check_output(["vvp", "-N", str(vvp_ps)], text=True)
                     ps_vecs = [ln for ln in ps_out.splitlines() if ln.startswith("VEC ")]
                     self.assertEqual(c_vecs, ps_vecs)
 
