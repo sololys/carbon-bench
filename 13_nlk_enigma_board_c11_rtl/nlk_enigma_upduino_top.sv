@@ -1,6 +1,31 @@
 // =============================================================================
 // Physical UPduino v3.1 (Lattice iCE40UP5K-SG48) Top Wrapper for NLK-Enigma
 // Module   : nlk_enigma_upduino_top
+// Frame    : 256-bit MOSI command / 64-bit MISO post-eval telemetry digest
+// Bit Map (zero overlap between coordinates and authorization):
+//   [2:0]     cmd_mode (0=NOP/poll, 1=L01_reset, 2=board_load, 3=eval_step,
+//                       4=board_eval, 5=lifo_pop)
+//   [6:3]     mode subfields (L01 flags / slot_idx+present / expected_steps / tamper)
+//   [21:7]    board_q0_flat (15b — dedicated coordinate field)
+//   [36:22]   ring_flat (15b)
+//   [37]      plug_en
+//   [42:38]   x_in (5b)
+//   [47:43]   y_cand (5b)
+//   [62:48]   q_before_flat (15b)
+//   [77:63]   q_prop_flat (15b)
+//   [109:78]  seq_num (32b)
+//   [110]     meas_en
+//   [111]     meas_stale
+//   [143:112] e_err (32b)
+//   [175:144] sigma_ref (32b)
+//   [207:176] bits_erased (32b)
+//   [249:208] q_diss_rj[41:0] (42b)
+//   [250]     l2_profile (dedicated authorization bit)
+//   [251]     hw_verified (dedicated hardware attestation bit)
+//   [252]     witness_ext (gated in hardware with SG48 Pin 28 w_ext_hw_pin)
+//   [253]     hash_valid
+//   [254]     wal_ready
+//   [255]     crash_inject
 // =============================================================================
 `timescale 1ns / 1ps
 `default_nettype none
@@ -73,25 +98,27 @@ module nlk_enigma_upduino_top (
         (seq_prev_out ^ reset_epoch_out ^ {27'd0, y_out})
     };
 
+    wire [2:0] cmd_mode = spi_buf[2:0];
+
     always @(posedge clk_12m) begin
-        if (cs_active_shift) begin
-            spi_buf <= {spi_buf[SPI_BITS-2:0], mosi_sync[1]};
-        end
         if (!rst_n) begin
+            spi_buf    <= {SPI_BITS{1'b0}};
             miso_shift <= 64'd0;
             cmd_strobe <= 1'b0;
         end else begin
-            cmd_strobe <= cs_rise;
-            if (cs_rise) begin
+            if (cs_active_shift) begin
+                spi_buf <= {spi_buf[SPI_BITS-2:0], mosi_sync[1]};
+            end
+            cmd_strobe <= cs_rise && (cmd_mode != 3'd0);
+            if (!cs_active) begin
                 miso_shift <= telemetry_digest;
             end else if (cs_active_shift) begin
-                miso_shift <= {miso_shift[MISO_BITS-2:0], 1'b0};
+                miso_shift <= {miso_shift[MISO_BITS-2:0], miso_shift[MISO_BITS-1]};
             end
         end
     end
 
     assign spi_miso = miso_shift[MISO_BITS-1];
-    wire [2:0] cmd_mode = spi_buf[2:0];
 
     nlk_enigma_sluice u_core (
         .clk                  (clk_12m),
@@ -120,13 +147,13 @@ module nlk_enigma_upduino_top (
         .e_err                (spi_buf[143:112]),
         .sigma_ref            (spi_buf[175:144]),
         .bits_erased          (spi_buf[207:176]),
-        .q_diss_rj            ({19'd0, spi_buf[252:208]}),
+        .q_diss_rj            ({22'd0, spi_buf[249:208]}),
+        .l2_profile           (spi_buf[250]),
+        .hw_verified          (spi_buf[251]),
+        .witness_ext          (spi_buf[252] & wext_sync[1]),
         .hash_valid           (spi_buf[253]),
         .wal_ready            (spi_buf[254]),
         .crash_inject         (spi_buf[255]),
-        .l2_profile           (spi_buf[7]),
-        .hw_verified          (spi_buf[8]),
-        .witness_ext          (spi_buf[9] & wext_sync[1]),
         .busy_out             (busy_out),
         .eval_done_out        (eval_done_out),
         .port_out             (port_out),
