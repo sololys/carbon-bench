@@ -4,7 +4,7 @@
 verify: verify-all
 
 verify-all: leak-check c11 cpp17 rust py
-	@echo "[PASS] Alle 13 celler verifisert (C11 + C++17 + Rust + RTL + Python)."
+	@echo "[PASS] Alle 16 celler verifisert (C11 + C++17 + Rust + RTL + Python)."
 
 leak-check:
 	@! grep -rnE "(/home/sololyset|AGENTS\.md|00_KANONISK_KJERNE|03_ENGINES|04_REALITY_FORGE|05_PATENTS|06_RESEARCH|07_BOKHYLLA|09_SYSTEM|CARBON/|Gemini-Core|SPEC-[0-9]{3})" \
@@ -37,6 +37,9 @@ py:
 	python3 -B 11_bell_ky_7qubit_cptp_c11_rtl/98_bell_ky_7qubit_cptp_gate.py
 	python3 -B 12_omni_crash3_linf_c11_rtl/99_omni_crash3_linf_gate.py
 	python3 -B 13_nlk_enigma_board_c11_rtl/100_nlk_enigma_board_gate.py
+	python3 -B 14_sheaf_rns_compact_nash_c11_rtl/106_sheaf_rns_compact_nash_gate.py
+	python3 -B 15_dual_base_pfib_vk_c11_rtl/108_dual_base_pfib_vk_gate.py
+	python3 -B 16_top_iks_4ebr_wh1000_c11_rtl/113_top_iks_4ebr_wh1000_gate.py
 
 clean:
 	$(MAKE) -C 01_omega_interlock_c11 clean

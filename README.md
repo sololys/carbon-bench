@@ -4,9 +4,10 @@
 > Klinket i bordplata: bruddprøve (`VS`).  
 > Låst i regnskapet: realisert tilstand (`P`).
 
-Dette er ikke et bibliotek og ikke et rammeverk. Det er **13 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
+Dette er ikke et bibliotek og ikke et rammeverk. Det er **16 lukkede bruddprøver** som viser hvordan en konkret feil eller bløff i sanntids-, fysikk- eller portlogikk blir funnet, regnet ihjel og sveiset igjen i kjørbar kode.
 
 - **Forfatter:** Marius Egerhei Torjusen (`ORCID: 0009-0006-0431-6637`)
+- **Zenodo-arkiv:** [`10.5281/zenodo.24628735`](https://doi.org/10.5281/zenodo.24628735)
 - **Lisens:** Apache-2.0
 - **Epistemisk grense:** `L1 Deterministisk Programvare` · `INSPIRED_BY != IMPLEMENTS != PROVES`
 
@@ -21,7 +22,7 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **13 lukkede bruddprøve
 
 ---
 
-## De 13 bruddprøvene
+## De 16 bruddprøvene
 
 | Celle | Språk | Kjernebrudd (bløffen som drepes) | Søsterrom (`@sololys`) |
 | :--- | :--- | :--- | :--- |
@@ -38,13 +39,16 @@ Dette er ikke et bibliotek og ikke et rammeverk. Det er **13 lukkede bruddprøve
 | **`11_bell_ky_7qubit_cptp_c11_rtl`** | C11 / RTL / Python | Spor-divisjonsfelle ($M\rho M^\dagger / \operatorname{Tr}$), fortegnsblind $\lvert\Sigma_1^2 - \Sigma_2^2\rvert$ og `L1`-dekoherens i CHSH; sveiser sporlåst 128D 7-qubit $\mathbb{Q}\text{-CPTP}$, Frobenius-skraper og `22/22 XOR == 0` mot `iCE40UP5K` (`21,34 MHz` post-PnR) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
 | **`12_omni_crash3_linf_c11_rtl`** | C11 / RTL / Python | IEEE-754 `NaN -> OPEN`-gjennomslipp, frakoblet $\dot{R} > \delta_R$ i vektet $L_1$-sum og tautologisk `(s^r)^r == s`; sveiser eksakt gullsnittring $\mathbb{Z}[\varphi]$, konjunktiv $L_\infty$-sluse og `22/22 XOR == 0` mot `iCE40UP5K` (`26,86 MHz` post-PnR) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
 | **`13_nlk_enigma_board_c11_rtl`** | C11 / RTL / Python | Strandet `q_auth` ved LIFO-pop, koordinatbrett-omgåelse av `OUTCOME_UNKNOWN` og `5.00 V`-loggføring i krasjvinduet; sveiser to-takts mod-26 `KY-Enigma -> NLK`-sluse, 8-spors stål-koordinatbrett, tre-rotors LIFO-tilbakespoling og `24/24 XOR == 0` mot `iCE40UP5K` (`23,36 MHz` post-PnR, `17` nivåer) | [ky-rox-public-demonstrators](https://github.com/sololys/ky-rox-public-demonstrators) |
+| **`14_sheaf_rns_compact_nash_c11_rtl`** | C11 / Rust / RTL / Python | Randdrift $+2g\,p_{\partial M}$ (`XOR = 0xe6`), ikke-kanonisk `res[c] == p_c`, rå `__int128` og 64-bits `% p`-divisjon; sveiser 3D 6-flaters + 3-plaketters skjelett-Grothendieck-sluse (`16/16 XOR == 0`, `12,62 MHz` STA), divisjonsfri pseudo-Mersenne RNS ($2^{31}-k_c$) og $\iota_!$ kompakt-støtte-involusjon | [gscx-battery-energy-network](https://github.com/sololys/gscx-battery-energy-network) |
+| **`15_dual_base_pfib_vk_c11_rtl`** | C11 / Rust / RTL / Python | Bokføringstautologi $E_{\text{curr}} := E_{\text{prev}} - \Delta H$, falsk Gromov-`KILL` i hvile og 2D Townes-nullhelning ($\Delta Q = 0$); sveiser uavhengig $\delta E_{\text{shed}} \ge 0$ ($\Delta H_{B_1} + \Delta E_{\text{fiber}} = 0$), tangentramme-Gromov-areal og streng Vakhitov–Kolokolov-helling (`20/20 XOR == 0`, `14,94 MHz` STA) | [gscx-battery-energy-network](https://github.com/sololys/gscx-battery-energy-network) · [femos-biomimetic-nitrogenase](https://github.com/sololys/femos-biomimetic-nitrogenase) |
+| **`16_top_iks_4ebr_wh1000_c11_rtl`** | C11 / RTL / Python | Asynkron `assign diag_rail_a = mem_a[...]` som drepte EBR-inferens (`0 SB_RAM40_4K`, `5 792 > 5 280` celler), halvskinne-vektkrasj (`~500 != 1000`) og fiktiv `arx_acc <= 0x3109_A228 ^ 0`-tautologi; sveiser synkron `4 / 30 SB_RAM40_4K` EBR (`556 SB_LUT4`), balansert `pop4` LUT4-tre ($W_H = 1000$) og ekte ARX-svamp fra `0x811C_9DC5` $\to$ `0x3109a228` (`18,78 MHz` STA) | [gscx-battery-energy-network](https://github.com/sololys/gscx-battery-energy-network) |
 
 ---
 
-## Kjør alle 13 bruddprøver
+## Kjør alle 16 bruddprøver
 
 ```bash
 make verify-all
 ```
 
-Kommandoen kjører `leak-check` etterfulgt av samtlige 13 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`), SystemVerilog RTL (`iverilog`/`yosys`) og Python (`python3`).
+Kommandoen kjører `leak-check` etterfulgt av samtlige 16 celler i C11 (`gcc -Werror`), C++17 (`g++ -Werror -fsanitize=address,undefined`), Rust (`rustc --test -D warnings`), SystemVerilog RTL (`iverilog`/`yosys`) og Python (`python3`).
